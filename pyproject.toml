@@ -1,0 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dimorphite_dl"
+version = "2025.03.21"
+requires-python = ">=3.8"
+description = "Forked from https://github.com/durrantlab/dimorphite_dl"
+

@@ -72,15 +72,18 @@ def main(params=None):
     """
 
     parser = ArgParseFuncs.get_args()
-    args,_ = parser.parse_known_args()
+    args,_ = parser.parse_known_args() # discard unknown args such as -f -.json when run from Jupyternotebook. rwu
     args = vars(args)
-    if not args["silent"]:
-        print_header()
 
     # Add in any parameters in params.
     if params is not None:
         for k, v in params.items():
             args[k] = v
+
+    ## move it here so it honors silent arg from params passed 
+    ## by func.run(...) # rwu
+    if not args["silent"]:
+        print_header()
 
     # If being run from the command line, print out all parameters.
     if __name__ == "__main__":
@@ -1375,8 +1378,8 @@ def run(**kwargs):
     """
 
     # Run the main function with the specified arguments.
-    return main(kwargs)
-
+    return main(kwargs) # need 'return' when return_as_list=True # rwu
+ 
 
 def run_with_mol_list(mol_lst, **kwargs):
     """A helpful, importable function for those who want to call Dimorphite-DL
